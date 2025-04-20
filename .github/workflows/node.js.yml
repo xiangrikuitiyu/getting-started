@@ -1,21 +1,25 @@
-import { WechatyBuilder } from 'wechaty'
+name: Node.js CI
 
-const bot = WechatyBuilder.build({
-  name: 'ding-dong-bot',
-  puppet: 'wechaty-puppet-service',
-})
+on:
+  push:
+    branches:
+      - main
 
-bot
-  .on('scan', (qrcode, status) =>
-    console.log(`Scan QR Code to login: ${status}\nhttps://wechaty.js.org/qrcode/${encodeURIComponent(qrcode)}`),
-  )
-  .on('login', user => console.log(`User ${user} logged in`))
-  .on('message', async message => {
-    console.log(`Message: ${message}`)
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-    if (message.text() === 'ding') {
-      await message.say('dong')
-    }
-  })
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-bot.start()
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
