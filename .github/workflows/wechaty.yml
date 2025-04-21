@@ -1,4 +1,4 @@
-name: Deploy WeChaty Bot
+name: Run WeChaty Bot
 
 on:
   push:
@@ -6,19 +6,26 @@ on:
       - main
 
 jobs:
-  build:
+  bot:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '18'
+
+      # 添加这一段：设置环境变量
+      - name: Set up PadLocal token
+        run: echo "Token set"
+        env:
+          WECHATY_PUPPET_PADLOCAL_TOKEN: ${{ secrets.WECHATY_PUPPET_PADLOCAL_TOKEN }}
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run bot
+      - name: Run the bot
         run: node index.js
