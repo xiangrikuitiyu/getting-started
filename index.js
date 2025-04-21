@@ -3,7 +3,7 @@ import { PuppetPadlocal } from 'wechaty-puppet-padlocal'
 
 const bot = WechatyBuilder.build({
   puppet: new PuppetPadlocal({
-    token: process.env.PADLOCAL_TOKEN
+    token: process.env.WECHATY_PUPPET_PADLOCAL_TOKEN
   }),
 })
 
