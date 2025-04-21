@@ -24,4 +24,4 @@ jobs:
       - name: Run WeChaty bot
         env:
           PADLOCAL_TOKEN: ${{ secrets.PADLOCAL_TOKEN }}
-        run: node index.js
+        run: node index.js 
