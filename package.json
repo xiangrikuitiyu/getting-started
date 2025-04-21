@@ -1,13 +1,7 @@
 {
-  "name": "wechaty-bot",
-  "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
   "dependencies": {
     "wechaty": "^1.20.0",
-    "wechaty-puppet-padlocal": "^1.12.6"
+    "wechaty-puppet-padlocal": "^1.11.7"
   }
 }
