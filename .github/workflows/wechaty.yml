@@ -18,14 +18,10 @@ jobs:
         with:
           node-version: '18'
 
-      # 添加这一段：设置环境变量
-      - name: Set up PadLocal token
-        run: echo "Token set"
-        env:
-          WECHATY_PUPPET_PADLOCAL_TOKEN: ${{ secrets.WECHATY_PUPPET_PADLOCAL_TOKEN }}
-
       - name: Install dependencies
         run: npm install
 
       - name: Run the bot
         run: node index.js
+        env:
+          WECHATY_PUPPET_PADLOCAL_TOKEN: ${{ secrets.WECHATY_PUPPET_PADLOCAL_TOKEN }}
